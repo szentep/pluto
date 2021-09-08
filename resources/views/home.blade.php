@@ -39,6 +39,21 @@
         <p>Az ígéret szép szó, de a Landwirtschaftsausstellung még szebb.</p>
     </div>
 </div>
+Hali
+
+<p>Hali!!!</p>
+
+<div class="row">
+    <div class="col s12 m6">
+      <div class="card blue-grey darken-1">
+        <div class="card-content white-text">
+          <span class="card-title">Card Title</span>
+          <p>I am a very simple card. I am good at containing small bits of information.
+          I am convenient because I require little markup to use effectively.</p>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <div class="row">
     <div class="col s12 m7">
@@ -66,13 +81,13 @@
   benutzer@white-laptop:</strong><strong class="blue-text">~/minuteman</strong>$ minuteman-launch --now<br>
   WARNING:<br>
   The launch of intercontinental missiles without prior authorization from a superior officer is illegal and is punishable by military and international courts. It is critically important to use this program only on an official, written order. Make sure that such an order is stored at a safe place.<br><br>
-  
+
   Are you sure you want to proceed? (Y/N) █
   </div>
   <div class="blue-grey darken-1 white-text s12 z-depth-2 center-align">
   Maybe you are sure, but this is <strong>not</strong> a terminal window. Sorry about that.
   </div>
-  
+
 </div>
 
 
