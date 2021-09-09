@@ -2,7 +2,7 @@
 
 @section('content')
 
-Hali
+Hali!!
 
 <p>Hali!!!</p>
 
