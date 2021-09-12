@@ -19,7 +19,7 @@
         <div class="card-content white-text">
           <span class="card-title">Hello Felician!</span>
           <p>I am a card too. I need attention and more place. My name is Felician.
-            And I have to write here some more stuff. 
+            And I have to write here some more stuff.
           </p>
         </div>
       </div>
