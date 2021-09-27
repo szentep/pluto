@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Todo;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Date;
+//use Illuminate\Support\Facades\Date;
 
 class TodoController extends Controller
 {
@@ -15,9 +15,15 @@ class TodoController extends Controller
      */
     public function index()
     {
-        $todos = Todo::where('expiration_date', '<', Date::now()->addDays(50))->where('completed', 0)->get();
+        $todos_to_be_done = Todo::where('completed', false)->get(); //list/collection
+        $completed_count = Todo::where('completed', true)->count(); //int
+        $expired_count = Todo::where('expiration_date', '<', now())->count(); //int
 
-        return view('todos.index', ['todos' => $todos]);
+        return view('todos.index', [
+            'todos' => $todos_to_be_done, 
+            'completed_count' => $completed_count,
+            'expired_count' => $expired_count
+        ]);
     }
 
     /**
@@ -40,14 +46,14 @@ class TodoController extends Controller
     {
         $todo = Todo::create($request->all());
 
-
         // $todo = Todo::create([
         //     'name' => $request->name,
         //     'description' => $request->description,   
         //     'completed' => true
         // ]);
 
-        return response()->json($todo);
+        return view('todos.index')->with('message', 'Todo created successfully');
+                                    //a toast message will appear, see layouts.app.blade
     }
 
     /**
@@ -56,18 +62,28 @@ class TodoController extends Controller
      * @param  \App\Models\Todo  $todo
      * @return \Illuminate\Http\Response
      */
-    public function show(Todo $todo)
+    public function show(Todo $todo) //ha itt megadjuk, hogy Todo tipusu: automatikusan lekeri az adatbazisbol
     {
 
-        //adott id-ju todo lekérdezése
+        //adott id-ju todo lekérdezése:
         //$todo = Todo::find($todo);
         //$todo = Todo::where('id', $todo)->get(); //lista (collection)
-        //$todo = Todo::where('id', $todo)->get()->first();
-        //$todo = Todo::where('id', $todo)->first();
-        //$todo = Todo::where('id', $todo)->firstOrFail();
+        //$todo = Todo::where('id', $todo)->get()->first(); //lekerjuk az osszes todot, majd az elso elemet visszaadjuk, nem optimalis
+        //$todo = Todo::where('id', $todo)->first(); //csak az elso elemet kerjuk le
+        //$todo = Todo::where('id', $todo)->firstOrFail(); //ha nem talalja, akkor hiba
+
+
+        //query builder: ->get()-nel keri le az adatbazisbol
+        //a get kivalthato pl. first-tel
 
         return view('todos.index', ['todos' => [$todo]]);
 
+    }
+
+    public function markAsDone(Todo $todo)
+    {
+        $todo->update(['completed' => true]);
+        return back();
     }
 
     /**
@@ -78,7 +94,7 @@ class TodoController extends Controller
      */
     public function edit(Todo $todo)
     {
-       
+       //
     }
 
     /**
@@ -90,8 +106,7 @@ class TodoController extends Controller
      */
     public function update(Request $request, Todo $todo)
     {
-        $todo->update(['completed' => true]);
-        return back();
+        //
     }
 
     /**

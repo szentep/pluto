@@ -1,19 +1,18 @@
 @extends('layouts.app')
 
 @section('title')
-    New todo
+    @lang('todo.create')
 @endsection
 
 @section('content')
+    
+<form action="{{ route('todos.store') }}" method="POST">
+    @csrf
+    
+    <input type="text" name="name" placeholder="@lang('todo.name')"/>
+    <input type="text" name="description" placeholder="@lang('todo.desc')"/>
 
-
-    <form action="{{ route('todos.store') }}" method="POST">
-        @csrf
-        <input type="text" name="name" placeholder="Title"/>
-        <input type="text" name="description" placeholder="Description"/>
-
-        <button type="submit">Create</button>
-        
-    </form>
+    <button type="submit">@lang('todo.create')</button>
+</form>
 
 @endsection
