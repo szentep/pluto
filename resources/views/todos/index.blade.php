@@ -13,6 +13,7 @@
           <th>Description</th>
           <th>Expiration date</th>
           <th>Completed</th>
+          <th></th>
       </tr>
     </thead>
 
@@ -23,6 +24,16 @@
             <td>{{ $todo->description }}</td>
             <td>{{ $todo->expiration_date }}</td>
             <td>{{ $todo->completed }}</td>
+            <td>
+                {{-- POST-al --}}
+                <form action="{{ route('todos.update', $todo->id) }}" method="POST">
+                    @csrf
+                    
+                    <button type="submit" class="btn">Done</button>
+                </form>
+                {{-- Get-el --}}
+                {{-- <a href="{{ route('todos.edit', $todo->id) }}">Done</a> --}}
+            </td> 
         </tr>
     @endforeach
     </tbody>
